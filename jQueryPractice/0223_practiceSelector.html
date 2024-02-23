@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
+    <title>선택자 - 위치 탐색 선택자</title>
+</head>
+<body>
+    <h1>탐색 선택자</h1>
+
+    <ul id="menu">
+        <li>내용1</li>
+        <li>내용2</li>
+        <li>내용3</li>
+        <li>내용4</li>
+    </ul>
+    <script>
+        $(function() {
+            // 후손선택자 (공백) + 구조적 가상클래스 선택자 (:even, :odd)
+            // *** 이 경우 배열처럼 0번으로 시작하기 때문에 혼동 주의해야 함!
+            $("#menu li:even").css({backgroundColor : "red"});
+            $("#menu li:odd").css("backgroundColor" , "blue");
+        })
+    </script>
+    <hr><br>
+    <h1>탐색 선택자</h1>
+
+    <ul id="menu2">
+        <li>내용1</li>
+        <li>내용2</li>
+        <li>내용3</li>
+        <li>내용4</li>
+        <li>내용5</li>
+    </ul>
+    <script>
+        $(function() {
+            //eq(n)메소드 : 지정된 인덱스 번호와 일치하는 요소노드 선택 (equal)
+            // $("#menu2 li").eq(2).css({backgroundColor: "red"});
+            $("#menu2 li:eq(2)").css({backgroundColor: "red"});
+
+            // lt(n)메소드 : less than 지정된 인덱스 번호보다 작은 요소노드 선택 (less than)
+            $("#menu2 li:lt(2)").css({backgroundColor: "green"});
+
+            // gt(n)메소드 : greater than 지정된 인덱스 번호보다 큰 요소노드 선택 (greater than)
+            $("#menu2 li:gt(2)").css("backgroundColor", "blue");
+        })
+    </script>
+    <hr><br>
+    <h1>탐색 선택자</h1>
+    <ul>
+        <li>내용1-1</li>
+        <li>내용1-2</li>
+        <li>내용1-3</li>
+    </ul>
+    <ul>
+        <li>내용2-1</li>
+        <li>내용2-2</li>
+        <li>내용2-3</li>
+    </ul>
+    <script>
+        // li 요소 무리 중 첫 번째 요소 : "li:first-of-type"
+        // li 요소 무리 중 마지막 요소 : "li:last-of-type"
+        $(function() {
+            $("li:first-of-type").css({backgroundColor: "#ff0"});
+            $("li:last-of-type").css({backgroundColor: "#0ff"});
+        })
+    </script>
+    <hr><br>
+    <h1>구조적 가상 클래스 선택자</h1>
+
+    <ul id="menu1">
+        <li>내용1-1</li>
+        <li>내용1-2</li>
+        <li>내용1-3</li>
+        <li>내용1-4</li>
+    </ul>
+
+    <ul id="menu0">
+        <li>내용0-1</li>
+        <li>내용0-2</li>
+        <li>내용0-3</li>
+    </ul>
+    <script>
+        $(function () {
+            $("#menu1 li:nth-child(1)").css({backgroundColor: "red"});
+            $("#menu1 li:nth-child(2n)").css({border: "2px dashed green"});
+            $("#menu0 li:nth-last-child(2)").css({backgroundColor: "blue"});
+        })
+    </script>
+    <hr><br>
+    <h1>구조적 가상 클래스 선택자</h1>
+    <ul id="menu3">
+        <li>내용3-1</li>
+        <li>내용3-2</li>
+        <li>내용3-3</li>
+        <li>내용3-4</li>
+    </ul>
+    <ul id="menu4">
+        <li>내용4-1</li>
+    </ul>
+    <script>
+        $(function() {
+            // 인덱스 1 위치의 요소부터 인덱스 3위치의 요소 전까지 배경색 빨강으로!
+            $("#menu3 li").slice(1,3).css({backgroundColor: "red"});
+
+            // 부모 요소 내에 <li> 요소가 1개뿐인 <li> 요소만 선택
+            $("li:only-child").css({backgroundColor: "blue"});
+        })
+    </script>
+</body>
+</html>
